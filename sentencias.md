@@ -1,66 +1,52 @@
-Contar el número de productos de una categoría específica.
+obtener la edad promedio de los miembros:
   - Sentencia:
- SELECT COUNT(*) AS product_count
-FROM product
-WHERE category = 'Electronics';
+ SELECT AVG(EXTRACT(YEAR FROM AGE(NOW(), dateOfBirth))) AS edad_promedio
+FROM Members;
 
 
 <img src="![alt text](image.png)" 
 
-Contar el número de clientes en una ciudad específica.
+obtener la edad mínima de los miembros:
   - Sentencia:
-  SELECT COUNT(*) AS client_count
-FROM client
-WHERE city = 'Quito';
-
-  - Captura:
-
+ SELECT MIN(EXTRACT(YEAR FROM AGE(NOW(), dateOfBirth))) AS edad_minima
+FROM Members;
 <img src="![alt text](image-1.png)" 
 
-Contar el número de productos cuyo precio está dentro de un rango específico
- - Sentencia:
-SELECT COUNT(*) AS product_count
-FROM product
-WHERE price BETWEEN 100 AND 500;
-
+obtener el número total de registros asistidos:
+  - Sentencia:
+ SELECT COUNT(*) AS total_registros_asistidos
+FROM Registrations
+WHERE attendance_status = 'Attended';
 <img src="![alt text](image-2.png)" 
- 
- Seleccionar clientes que viven en una ciudad específica y tienen un tipo de cliente específico
- - Sentencia:
- SELECT *
-FROM client
-WHERE city = 'Quito' AND type_of_client = 'Retail';
+
+
+obtener el número total de asistentes a todas las conferencias
+  - Sentencia:
+SELECT SUM(total_attendees) AS total_asistentes
+FROM Events;
 <img src="![alt text](image-3.png)" 
 
+obtener el número total de eventos por cada ciudad:
+  - Sentencia:
+SELECT city, COUNT(*) AS total_eventos
+FROM Events
+GROUP BY city;
+<img src="![alt text](image-4.png))" 
 
-Seleccionar productos que pertenecen a una categoría específica y cuyo precio está por encima de un valor específico
-
- - Sentencia:
-SELECT *
-FROM product
-WHERE category = 'Electronics' AND price > 1000;
-<img src="![alt text](image-4.png)" 
-
-Seleccionar productos que fueron producidos en un año específico y en un país de origen específico
-- Sentencia:
-SELECT *
-FROM product
-WHERE year_of_production = 2021 AND country_of_origin = 'USA';
+obtener el número de registros por cada miembro:
+  - Sentencia:
+SELECT member_id, COUNT(*) AS total_registros
+FROM Registrations
+GROUP BY member_id;
 <img src="![alt text](image-5.png)" 
 
-Seleccionar clientes cuyo nombre completo comience con 'J'.
-- Sentencia:
-SELECT *
-FROM client
-WHERE fullname LIKE 'J%';
+obtener el número de registros por cada conferencia:
+  - Sentencia:
+SELECT conference_id, COUNT(*) AS total_registros
+FROM Registrations
+GROUP BY conference_id;
 <img src="![alt text](image-6.png)" 
 
-Seleccionar clientes cuya ciudad contenga la letra 'a'
-- Sentencia:
-SELECT *
-FROM client
-WHERE city LIKE '%a%';
-<img src="![alt text](image-7.png)" 
 
 
 
